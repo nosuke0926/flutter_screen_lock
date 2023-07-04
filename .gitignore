@@ -39,3 +39,5 @@ example/ios/Flutter/.last_build_id
 
 # fvm related
 .fvm
+
+.tool-versions

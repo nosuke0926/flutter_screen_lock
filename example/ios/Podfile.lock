@@ -1,20 +1,26 @@
 PODS:
   - Flutter (1.0.0)
+  - flutter_fgbg (0.0.1):
+    - Flutter
   - local_auth (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - flutter_fgbg (from `.symlinks/plugins/flutter_fgbg/ios`)
   - local_auth (from `.symlinks/plugins/local_auth/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  flutter_fgbg:
+    :path: ".symlinks/plugins/flutter_fgbg/ios"
   local_auth:
     :path: ".symlinks/plugins/local_auth/ios"
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_fgbg: 31c0d1140a131daea2d342121808f6aa0dcd879d
   local_auth: 25938960984c3a7f6e3253e3f8d962fdd16852bd
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3

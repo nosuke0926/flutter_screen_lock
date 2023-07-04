@@ -167,7 +167,7 @@ class ScreenLock extends StatefulWidget {
   State<ScreenLock> createState() => _ScreenLockState();
 }
 
-class _ScreenLockState extends State<ScreenLock> {
+class _ScreenLockState extends State<ScreenLock> with WidgetsBindingObserver {
   late InputController inputController =
       widget.inputController ?? InputController();
 
@@ -183,6 +183,7 @@ class _ScreenLockState extends State<ScreenLock> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     inputController.initialize(
       correctString: widget.correctString,
       digits: widget.digits,
@@ -225,6 +226,7 @@ class _ScreenLockState extends State<ScreenLock> {
   @override
   void dispose() {
     inputController.dispose();
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -313,7 +315,7 @@ class _ScreenLockState extends State<ScreenLock> {
 
     return Builder(
       builder: (context) => DefaultTextStyle(
-        style: Theme.of(context).textTheme.headline6!,
+        style: Theme.of(context).textTheme.titleLarge!,
         textAlign: TextAlign.center,
         child: buildDelay(
           buildConfirmed(
@@ -322,6 +324,21 @@ class _ScreenLockState extends State<ScreenLock> {
         ),
       ),
     );
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        widget.onOpened?.call();
+        break;
+      case AppLifecycleState.inactive:
+        break;
+      case AppLifecycleState.paused:
+        break;
+      case AppLifecycleState.detached:
+        break;
+    }
   }
 
   @override

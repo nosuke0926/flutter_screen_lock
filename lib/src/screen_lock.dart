@@ -338,6 +338,8 @@ class _ScreenLockState extends State<ScreenLock> with WidgetsBindingObserver {
         break;
       case AppLifecycleState.detached:
         break;
+      case AppLifecycleState.hidden:
+        break;
     }
   }
 

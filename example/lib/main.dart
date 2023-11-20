@@ -25,15 +25,17 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   Future<void> localAuth(BuildContext context) async {
     final localAuth = LocalAuthentication();
     final didAuthenticate = await localAuth.authenticate(
       localizedReason: 'Please authenticate',
-      biometricOnly: true,
+      options: const AuthenticationOptions(
+        biometricOnly: true,
+      ),
     );
     if (didAuthenticate) {
       Navigator.pop(context);
@@ -124,13 +126,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         height: 68,
                         padding: const EdgeInsets.only(top: 10),
                         child: OutlinedButton(
-                          child: const Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Text('Cancel'),
-                          ),
                           onPressed: () => Navigator.pop(context),
                           style: OutlinedButton.styleFrom(
                             backgroundColor: Colors.transparent,
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Text('Cancel'),
                           ),
                         ),
                       ),
